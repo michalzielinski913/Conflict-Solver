@@ -5,123 +5,121 @@
 
 
     <meta charset="UTF-8">
-    <title>Grid test</title>
+    <title>Difference list</title>
     <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="js/UtilityDisplay.js"></script>
+    <script type="text/javascript" src="js/TextDisplay.js"></script>
+    <script type="text/javascript" src="js/DifferenceList.js"></script>
+
     <script type="text/javascript" src="js/view.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
 </head>
 <body>
 <div class="wrapper">
     <div>
-      <textarea spellcheck="false" wrap="off" autocorrect="off" autocapitalize="off" spellcheck="false"   class="textBox" id="textOneContent" >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse rutrum consequat ipsum ac tempor. Integer malesuada convallis orci, et convallis neque laoreet in. Pellentesque placerat nulla sed ante lobortis euismod. Praesent ut nisl lacus. Proin vitae erat vitae magna volutpat convallis nec non lectus. Mauris scelerisque, risus eget imperdiet facilisis, sem velit tempor elit, at congue ipsum nunc in velit. Nullam malesuada mauris quis justo placerat, ac placerat mauris sodales.
-
-P litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse potenti. Nunc at enim sed urna congue pulvinar. Nulla sagittis eros tellus. Integer faucibus felis eu cursus tempus. Nunc tellus nisl, lacinia non sem sit amet, condimentum auctor mi. Ut quis mauris lectus. In eleifend odio dignissim orci dapibus lacinia. Aenean eget porttitor
+      <textarea  autocorrect="off" autocapitalize="off" spellcheck="false" class="textBox" id="textOneContent" >
   </textarea>
     </div>
     <div>
       <textarea  autocorrect="off" autocapitalize="off" spellcheck="false" class="textBox" id="textTwoContent">
-Example textBox
   </textarea>
     </div>
     <div class="nested">
         <div class="tab">
-            <table id="table">
-                <tr >
-                <th>Index</th>
-                <th>Text 1</th>
-                <th>Text 2</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                    <td>Lorem ipsum dolor sit amet, sagittis adipiscing elit.</td>
-                </tr>
+        <table id="differenceTab" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>File One</th>
+                <th>File Two</th>
 
+            </tr>
+        </thead>
+        <tbody>
+    </table>
+            <script>
+            $(document).ready(function() {
+    var table = $('#differenceTab').DataTable( {
+    columnDefs: [ {
+        targets: "_all",
+        render: function ( data, type, row ) {
+            return data.length > 32 ?
+        data.substr( 0, 32 ) +'…' :
+        data;
+        }
+    } ],
+        columns: [
+    { data: 'FirstFile' },
+    { data: 'SecondFile' },
 
-            </table>
+  ],
+       "order": []
 
+} );
+
+    $('#differenceTab tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+            eel.getFragment(viewObject.getChoosenElement());
+        }
+    } );
+
+} );
+
+            </script>
         </div>
-        <div>
-            <input id='fileOnePath' placeholder='File Here' value='' size="32"/>
+        <div id="options">
+            <input id='fileOnePath' placeholder='File Here' value='' size="32" required/>
             <button type="button" onclick="setLeftFile()">Select File One</button>
             <br>
-            <input id='fileTwoPath' placeholder='File Here' value='' size="32"/>
+            <input id='fileTwoPath' placeholder='File Here' value='' size="32" required/>
             <button type="button" onclick="setRightFile()">Select File Two</button>
             <br>
-            <button type="button" onclick="testFile()">Load and Compare</button>
+            <br>
+            Split by <input type="number" id="N" style="width: 5ch;" value="1" min="1" oninput="validity.valid||(value='1');"/>:
+            <br>
+            <input type="radio" name="mode" value="line" checked>
+            <label>lines</label>
+            <br>
+            <input type="radio" name="mode" value="char">
+            <label>chars</label>
+            <br>
+            <input type="radio" name="mode" value="word">
+            <label>words</label>
+            <br>
+            <input type="radio" name="mode" value="sentence">
+            <label>sentences</label>
+            <br>
+            <button type="button" onclick="viewObject.loadFile()">Load and Compare</button>
+
+
+        </div>
+        <div id="selection" hidden="hidden">
+
+            <input type="radio" name="conflictOption" value="textOne" checked>
+            <label>Choose text one</label>
+            <br>
+            <input type="radio" name="conflictOption" value="textTwo">
+            <label>Choose text two</label>
+            <br>
+            <input type="radio" name="conflictOption" value="custom">
+            <label>Custom Text</label>
+            <br>
+            <textarea name="thirdOptionValue" style="width: 93%; resize: none; height: 60%;"></textarea>
+            <br>
+            <button type="button" onclick="viewObject.solveCompare()">Solve</button>
+            <br>
+            <br>
+            <button type="button" onclick="viewObject.cancelCompare()">Cancel</button>
+
+
         </div>
     </div>
 </div>

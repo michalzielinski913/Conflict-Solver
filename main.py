@@ -2,20 +2,18 @@ import eel
 from test import test
 import wx
 from model.txtFile import txtFile
+from controller.Controller import Controler
 import tkinter as tk
 from tkinter import filedialog
 import json
 
 eel.init('web')
 
-file=txtFile()
+controller=Controler()
 
 @eel.expose
 def getFilePath(wildcard="*"):
-    root = tk.Tk()
-    root.withdraw()
-    file_path = filedialog.askopenfilename()
-    return file_path
+    return controller.chooseFilePath()
 dictT={}
 
 
@@ -67,4 +65,12 @@ def getFragment(id):
     eel.setRightText(dictT[int(id)][1])
 
 
-eel.start('main2.html')
+@eel.expose
+def solveConflict(id, option, newText=None):
+    controller.solveConflict(id, option, newText)
+
+@eel.expose
+def setSplitSettings(mode, N):
+    controller.setSplitSettings(mode, N)
+
+eel.start('main.html')

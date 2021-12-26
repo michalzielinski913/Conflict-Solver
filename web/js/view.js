@@ -53,6 +53,39 @@ class View{
         this.list.clearTable();
     }
 
+    cancelCompare(){
+        this.clearTable();
+        document.getElementById("selection").hidden=true;
+        document.getElementById("options").hidden=false;
+    }
+
+    solveCompare(){
+        try{
+            eel.solveConflict(this.getChoosenElement(), $('input[name="conflictOption"]:checked').val(), $('textarea[name="thirdOptionValue"]').val());
+
+        }catch (e) {
+            return;
+        }
+    }
+
+    loadFile(){
+        try{
+            eel.setSplitSettings($('input[name="mode"]:checked').val(), parseInt(document.getElementById("N").value))
+         if (document.getElementById('fileOnePath').value == '' || document.getElementById('fileTwoPath').value == '') {
+             return;
+         }
+         this.clearTable();
+         document.getElementById('textOneContent').contentEditable = true;
+         document.getElementById('textOneContent').innerHTML = "";
+         eel.loadFile(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
+         document.getElementById("options").hidden = true;
+         document.getElementById("selection").hidden = false;
+        }catch (e) {
+            return;
+        }
+
+    }
+
 }
 var viewObject=new View();
 eel.expose(setLeftText);
