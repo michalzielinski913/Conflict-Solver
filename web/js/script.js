@@ -11,15 +11,16 @@ function selectFile(box) {
 
     })
       };
- function testFile() {
-     if(document.getElementById('fileOnePath').value=='' || document.getElementById('fileTwoPath').value==''){
+function testFile() {
+     if (document.getElementById('fileOnePath').value == '' || document.getElementById('fileTwoPath').value == '') {
          return;
      }
-     document.getElementById('textOneContent').contentEditable=true;
-     document.getElementById('textOneContent').innerHTML="";
+     viewObject.clearTable();
+     document.getElementById('textOneContent').contentEditable = true;
+     document.getElementById('textOneContent').innerHTML = "";
      eel.loadFile(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
-     document.getElementById("options").hidden=true;
-     document.getElementById("selection").hidden=false;
+     document.getElementById("options").hidden = true;
+     document.getElementById("selection").hidden = false;
  };
 
  eel.expose(append_text_one);
@@ -35,6 +36,7 @@ $('#textTwoContent')[0].selectionEnd = selectionEnd;
  }
  
  function cancelCompare() {
+            viewObject.clearTable();
           document.getElementById("selection").hidden=true;
          document.getElementById("options").hidden=false;
  }

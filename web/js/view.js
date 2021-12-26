@@ -34,8 +34,23 @@ class View{
         this.list.addRow(leftText, rightText, id);
     }
 
+    addRow(table){
+        for (const element of table) {
+            this.list.addRow(element[0], element[1], element[2]);
+
+        }
+    }
+
+    addRows(json){
+        this.list.addRows(json);
+    }
+
     getChoosenElement(){
         return this.list.getSelected();
+    }
+
+    clearTable(){
+        this.list.clearTable();
     }
 
 }
@@ -50,20 +65,13 @@ function setRightText(value) {
     viewObject.setRightText(value);
 }
 
-function setLeftFile() {
-         eel.getFilePath()(function(path){
-        viewObject.setLeftFile(path);
-
-    })
-
+eel.expose(addRow)
+function addRow(leftElement, rightElement, id) {
+    viewObject.addRow(leftElement, rightElement, id);
 }
 
-function setRightFile() {
-         eel.getFilePath()(function(path){
-    // Update the div with a random number returned by python
-    viewObject.setRightFile(path);
-
-    })
-
+eel.expose(addRows)
+function addRows(json) {
+    viewObject.addRows(json)
 }
 
