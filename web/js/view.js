@@ -30,10 +30,6 @@ class View{
         return this.utility.getSecondPath();
     }
 
-    addRow(leftText, rightText, id){
-        this.list.addRow(leftText, rightText, id);
-    }
-
     addRow(table){
         for (const element of table) {
             this.list.addRow(element[0], element[1], element[2]);
@@ -54,6 +50,7 @@ class View{
     }
 
     cancelCompare(){
+        eel.cancelCompare();
         this.clearTable();
         document.getElementById("selection").hidden=true;
         document.getElementById("options").hidden=false;
@@ -86,6 +83,11 @@ class View{
 
     }
 
+    removeRow(id){
+        this.list.removeRow(id)
+
+    }
+
 }
 var viewObject=new View();
 eel.expose(setLeftText);
@@ -108,3 +110,7 @@ function addRows(json) {
     viewObject.addRows(json)
 }
 
+eel.expose(removeRow)
+function removeRow(id){
+    viewObject.removeRow(id);
+}

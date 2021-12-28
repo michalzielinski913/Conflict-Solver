@@ -2,18 +2,6 @@ class DifferenceList{
     constructor() {
         this.tabID="differenceTab"
     }
-    addRow(leftText, rightText, elementID){
-        var t =$('#'+this.tabID).DataTable();
-        var persons = JSON.parse("[" +
-            "  {" +
-            '    "DT_RowId": 1,' +
-            '    "FirstFile": "LanTest101",' +
-            '    "SecondFile": "x1"' +
-            "  }" +
-            "]")
-
-        t.rows.add(persons).draw();
-    }
 
     addRows(json){
         var t =$('#'+this.tabID).DataTable();
@@ -29,6 +17,12 @@ class DifferenceList{
     clearTable(){
         var t =$('#'+this.tabID).DataTable();
         t.clear().draw();
+
+    }
+
+    removeRow(id){
+        var t =$('#'+this.tabID).DataTable();
+        t.row('#'+id).remove().draw();
 
     }
 
