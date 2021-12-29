@@ -4,7 +4,6 @@ import time
 class Splitter:
     def chopAfterNChars(data, n):
         regex = ".{1," + str(n) + "}"
-        print(regex)
         data = re.findall(regex, data)
         return data
 
@@ -24,14 +23,13 @@ class Splitter:
         data = [' '.join(data[i:i+n]) for i in range(0,len(data),n)]
         return data
 
-# file = open("enwik8", "r")
-file = open("długieLoremIpsum2.txt", "r")
+file = open("text.txt", "r")
 data = file.read()
 temp = Splitter
 start = time.time()
-# print(temp.chopAfterNChars(data, 10))
-# print(temp.chopAfterNWords(data, 10))
-print(temp.chopAfterNSentence(data, 3))
-# print(temp.chopAfterNLines(data, 2))
+x = temp.chopAfterNChars(data, 10)
+# x = temp.chopAfterNWords(data, 10)
+# x = temp.chopAfterNSentence(data, 3)
+# x = temp.chopAfterNLines(data, 2)
 end = time.time()
 print(end - start)
