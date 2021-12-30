@@ -30,12 +30,62 @@ class View{
         return this.utility.getSecondPath();
     }
 
-    addRow(leftText, rightText, id){
-        this.list.addRow(leftText, rightText, id);
+    addRow(table){
+        for (const element of table) {
+            this.list.addRow(element[0], element[1], element[2]);
+
+        }
+    }
+
+    addRows(json){
+        this.list.addRows(json);
     }
 
     getChoosenElement(){
         return this.list.getSelected();
+    }
+
+    clearTable(){
+        this.list.clearTable();
+    }
+
+    cancelCompare(){
+        eel.cancelCompare();
+        this.clearTable();
+        document.getElementById("selection").hidden=true;
+        document.getElementById("options").hidden=false;
+    }
+
+    solveCompare(){
+        try{
+            eel.solveConflict(this.getChoosenElement(), $('input[name="conflictOption"]:checked').val(), $('textarea[name="thirdOptionValue"]').val());
+
+        }catch (e) {
+            return;
+        }
+    }
+
+    loadFile(){
+        try{
+            eel.setSplitSettings($('input[name="mode"]:checked').val(), parseInt(document.getElementById("N").value))
+         if (document.getElementById('fileOnePath').value == '' || document.getElementById('fileTwoPath').value == '') {
+             return;
+         }
+         this.clearTable();
+         document.getElementById('textOneContent').contentEditable = true;
+         document.getElementById('textOneContent').innerHTML = "";
+         eel.loadFile(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
+         document.getElementById("options").hidden = true;
+         document.getElementById("selection").hidden = false;
+        }catch (e) {
+            return;
+        }
+
+    }
+
+    removeRow(id){
+        this.list.removeRow(id)
+
     }
 
 }
@@ -50,20 +100,17 @@ function setRightText(value) {
     viewObject.setRightText(value);
 }
 
-function setLeftFile() {
-         eel.getFilePath()(function(path){
-        viewObject.setLeftFile(path);
-
-    })
-
+eel.expose(addRow)
+function addRow(leftElement, rightElement, id) {
+    viewObject.addRow(leftElement, rightElement, id);
 }
 
-function setRightFile() {
-         eel.getFilePath()(function(path){
-    // Update the div with a random number returned by python
-    viewObject.setRightFile(path);
-
-    })
-
+eel.expose(addRows)
+function addRows(json) {
+    viewObject.addRows(json)
 }
 
+eel.expose(removeRow)
+function removeRow(id){
+    viewObject.removeRow(id);
+}

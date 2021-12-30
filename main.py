@@ -2,33 +2,40 @@ import eel
 from test import test
 import wx
 from model.txtFile import txtFile
+from controller.Controller import Controler
 import tkinter as tk
 from tkinter import filedialog
+import json
 
 eel.init('web')
 
-file=txtFile()
+controller=Controler()
 
 @eel.expose
 def getFilePath(wildcard="*"):
-    root = tk.Tk()
-    root.withdraw()
-    file_path = filedialog.askopenfilename()
-    return file_path
-
+    return controller.chooseFilePath()
 
 @eel.expose
 def loadFile(pathOne, pathTwo):
-    print(pathOne)
-    print(pathTwo)
+    controller.loadFiles(pathOne, pathTwo)
 
-
+#C:/Users/Michał/Downloads/długieLoremIpsum2.txt
 
 @eel.expose
 def getFragment(id):
-    print(id)
-    eel.setLeftText("test")
-    eel.setRightText("test2")
+    controller.getFragment(id)
 
 
-eel.start('main2.html')
+@eel.expose
+def solveConflict(id, option, newText=None):
+    controller.solveConflict(id, option, newText)
+
+@eel.expose
+def setSplitSettings(mode, N):
+    controller.setSplitSettings(mode, N)
+
+@eel.expose
+def cancelCompare():
+    controller.cancelCompare()
+
+eel.start('main.html')
