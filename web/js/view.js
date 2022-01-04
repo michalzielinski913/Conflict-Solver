@@ -65,7 +65,7 @@ class View{
         }
     }
 
-    loadFile(){
+    loadAndCompare(){
         try{
             eel.setSplitSettings($('input[name="mode"]:checked').val(), parseInt(document.getElementById("N").value))
          if (document.getElementById('fileOnePath').value == '' || document.getElementById('fileTwoPath').value == '') {
@@ -74,7 +74,7 @@ class View{
          this.clearTable();
          document.getElementById('textOneContent').contentEditable = true;
          document.getElementById('textOneContent').innerHTML = "";
-         eel.loadFile(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
+         eel.loadAndCompare(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
          document.getElementById("options").hidden = true;
          document.getElementById("selection").hidden = false;
         }catch (e) {
@@ -85,7 +85,10 @@ class View{
 
     removeRow(id){
         this.list.removeRow(id)
+    }
 
+    sendAlert(msg){
+        alert(msg);
     }
 
 }
@@ -113,4 +116,14 @@ function addRows(json) {
 eel.expose(removeRow)
 function removeRow(id){
     viewObject.removeRow(id);
+}
+
+eel.expose(sendAlert)
+function sendAlert(msg){
+    viewObject.sendAlert(msg);
+}
+
+eel.expose(emergencyCancel)
+function emergencyCancel(){
+    viewObject.cancelCompare();
 }
