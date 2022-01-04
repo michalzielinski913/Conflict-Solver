@@ -54,6 +54,7 @@ class View{
         this.clearTable();
         document.getElementById("selection").hidden=true;
         document.getElementById("options").hidden=false;
+        document.getElementById("thirdFile").hidden=true;
     }
 
     solveCompare(){
@@ -62,6 +63,11 @@ class View{
 
         }catch (e) {
             return;
+        }
+        if(this.list.getRowsAmount()==1){
+            document.getElementById("selection").hidden=true;
+            document.getElementById("options").hidden=true;
+            document.getElementById("thirdFile").hidden=false;
         }
     }
 
@@ -77,6 +83,7 @@ class View{
          eel.loadAndCompare(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
          document.getElementById("options").hidden = true;
          document.getElementById("selection").hidden = false;
+         document.getElementById("thirdFile").hidden=true;
         }catch (e) {
             return;
         }
@@ -134,9 +141,7 @@ function setLeftFile() {
     }) }
 function setRightFile() {
          eel.getFilePath()(function(path){
-    // Update the div with a random number returned by python
-    viewObject.setRightFile(path);
+        viewObject.setRightFile(path);
 
     })
-
 }

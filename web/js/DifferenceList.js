@@ -26,5 +26,10 @@ class DifferenceList{
 
     }
 
+    getRowsAmount(){
+        var t =$('#'+this.tabID).DataTable();
+        return  t.data().count();
+    }
+
 
 }
