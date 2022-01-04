@@ -127,3 +127,16 @@ eel.expose(emergencyCancel)
 function emergencyCancel(){
     viewObject.cancelCompare();
 }
+function setLeftFile() {
+         eel.getFilePath()(function(path){
+        viewObject.setLeftFile(path);
+
+    }) }
+function setRightFile() {
+         eel.getFilePath()(function(path){
+    // Update the div with a random number returned by python
+    viewObject.setRightFile(path);
+
+    })
+
+}
