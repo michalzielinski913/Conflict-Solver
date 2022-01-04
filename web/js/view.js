@@ -97,6 +97,9 @@ class View{
     sendAlert(msg){
         alert(msg);
     }
+    generateThirdFile(){
+        eel.generateThirdFile(document.getElementById("thirdFilePath").value);
+    }
 
 }
 var viewObject=new View();
@@ -130,8 +133,8 @@ function sendAlert(msg){
     viewObject.sendAlert(msg);
 }
 
-eel.expose(emergencyCancel)
-function emergencyCancel(){
+eel.expose(cancelCompare)
+function cancelCompare(){
     viewObject.cancelCompare();
 }
 function setLeftFile() {

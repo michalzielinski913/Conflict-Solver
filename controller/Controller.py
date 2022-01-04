@@ -5,6 +5,8 @@ import tkinter as tk
 from tkinter import filedialog
 import eel
 
+from model.StandardTextWriter import StandardTextWriter
+
 
 class Controler:
 
@@ -61,13 +63,13 @@ class Controler:
         try:
             fileOne = StandardText(pathOne)
         except:
-            eel.emergencyCancel()
+            eel.cancelCompare()
             eel.sendAlert("File: "+pathOne+"\n Could not be opened!")
             return
         try:
             fileTwo = StandardText(pathTwo)
         except:
-            eel.emergencyCancel()
+            eel.cancelCompare()
             eel.sendAlert("File: "+pathTwo+"\n Could not be opened!")
             return
 
@@ -90,3 +92,14 @@ class Controler:
         eel.addRows(self.comparator.getJson())
         eel.sendAlert("Comparing complete!", "")
         self.comparator.resetJson()
+
+    def generateThirdFile(self, path):
+        try:
+            self.writer=StandardTextWriter(path)
+        except:
+            eel.sendAlert("File: " + path + "\n Could not be created!")
+            return
+        for line in self.comparator.getFirstColumn():
+            self.writer.writeLineToFile(line)
+        eel.cancelCompare()
+        eel.sendAlert("File: "+path+"\n was generated!")

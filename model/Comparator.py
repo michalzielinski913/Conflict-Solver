@@ -43,3 +43,7 @@ class Comparator:
             self.dictionary[id][0]=self.dictionary[id][1]
         elif(option=="custom"):
             self.dictionary[id][0]=newText
+
+    def getFirstColumn(self):
+        for i in range(len(self.dictionary)):
+            yield self.dictionary[i+1][0]

@@ -2,8 +2,8 @@ import eel
 from controller.Controller import Controler
 ###TODO###
 #Input validation
-#Notifications about errors/finish in UI
-#3rd file generation
+#Notifications about errors/finish in UI Edit: added simple version
+#3rd file generation, EDIT: added 3rd file generation but some fixes are needed
 #Solve file browser problems (window opens in the background)
 # TESTS
 
@@ -37,5 +37,9 @@ def setSplitSettings(mode, N):
 @eel.expose
 def cancelCompare():
     controller.cancelCompare()
+
+@eel.expose
+def generateThirdFile(path):
+    controller.generateThirdFile(path)
 
 eel.start('main.html')
