@@ -25,11 +25,11 @@ class Controler:
         file_path = filedialog.askopenfilename()
         return file_path
 
-    def solveConflict(self, id, option, newText=None):
+    def solveConflict(self, id, option, newText):
         eel.removeRow(id)
         eel.setLeftText("")
         eel.setRightText("")
-        pass
+        self.comparator.solveConflict(int(id), option, newText)
 
     def getFragment(self, id):
         textOne, textTwo = self.comparator.getElement(int(id))

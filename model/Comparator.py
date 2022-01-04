@@ -35,3 +35,11 @@ class Comparator:
 
     def getElement(self, id):
         return self.dictionary[id]
+
+    def solveConflict(self, id, option, newText):
+        if(option=="textOne"):
+            return
+        elif(option=="textTwo"):
+            self.dictionary[id][0]=self.dictionary[id][1]
+        elif(option=="custom"):
+            self.dictionary[id][0]=newText
