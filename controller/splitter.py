@@ -20,7 +20,7 @@ class Splitter:
 
     def chopAfterNLines(data, n):
         data = data.splitlines(True)
-        data = [' '.join(data[i:i+n]) for i in range(0,len(data),n)]
+        data = [''.join(data[i:i+n]) for i in range(0,len(data),n)]
         return data
 
 file = open("text.txt", "r")
