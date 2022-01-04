@@ -1,11 +1,11 @@
 import eel
-from test import test
-import wx
-from model.txtFile import txtFile
 from controller.Controller import Controler
-import tkinter as tk
-from tkinter import filedialog
-import json
+###TODO###
+#Input validation
+#Notifications about errors/finish in UI
+#3rd file generation
+#Solve file browser problems (window opens in the background)
+# TESTS
 
 eel.init('web')
 
@@ -16,8 +16,8 @@ def getFilePath(wildcard="*"):
     return controller.chooseFilePath()
 
 @eel.expose
-def loadFile(pathOne, pathTwo):
-    controller.loadFiles(pathOne, pathTwo)
+def loadAndCompare(pathOne, pathTwo):
+    controller.loadAndCompare(pathOne, pathTwo)
 
 #C:/Users/Michał/Downloads/długieLoremIpsum2.txt
 

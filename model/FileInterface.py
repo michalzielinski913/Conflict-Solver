@@ -1,5 +1,8 @@
 
-class File:
-    def loadFile(self, path):
+class FileInterface:
+    def __init__(self, path):
+        pass
+
+    def getText(self):
         pass
 
