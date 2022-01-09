@@ -6,87 +6,92 @@ from tkinter import filedialog
 import eel
 
 
-class Controler:
+class Controller:
 
     def __init__(self):
         self.splitter = Splitter()
-        self.comparator=Comparator()
+        self.comparator = Comparator()
+        self.mode = ''
+        self.n = ''
+        self.cancel = False
 
-    def setSplitSettings(self, mode, N):
+    def set_split_settings(self, mode, n):
         self.mode = mode
-        self.N = N
+        self.n = n
 
-    def getSplitSettings(self):
-        return self._mode, self._N
+    def get_split_settings(self):
+        return self.mode, self.n
 
-    def chooseFilePath(self, wildcard="*"):
+    def choose_file_path(self, wildcard="*"):
         root = tk.Tk()
         root.withdraw()
         file_path = filedialog.askopenfilename()
         return file_path
 
-    def solveConflict(self, id, option, newText=None):
-        eel.removeRow(id)
+    def solve_conflict(self, id_number, option, new_text=None):
+        eel.removeRow(id_number)
         eel.setLeftText("")
         eel.setRightText("")
         pass
 
-    def getFragment(self, id):
-        textOne, textTwo = self.comparator.getElement(int(id))
-        eel.setLeftText(textOne)
-        eel.setRightText(textTwo)
+    def get_fragment(self, id_number):
+        text_one, text_two = self.comparator.get_element(int(id_number))
+        eel.setLeftText(text_one)
+        eel.setRightText(text_two)
 
-    def cancelCompare(self):
+    def cancel_compare(self):
         self.cancel = True
         pass
 
-    def splitFiles(self, dataOne, dataTwo):
+    def split_files(self, data_one, data_two):
+        part_one = []
+        part_two = []
         if self.mode == "line":
-            partOne = self.splitter.chopAfterNLines(dataOne, self.N)
-            partTwo = self.splitter.chopAfterNLines(dataTwo, self.N)
+            part_one = self.splitter.chop_after_n_lines(data_one, self.n)
+            part_two = self.splitter.chop_after_n_lines(data_two, self.n)
         elif self.mode == "char":
-            partOne = self.splitter.chopAfterNChars(dataOne, self.N)
-            partTwo = self.splitter.chopAfterNChars(dataTwo, self.N)
+            part_one = self.splitter.chop_after_n_chars(data_one, self.n)
+            part_two = self.splitter.chop_after_n_chars(data_two, self.n)
         elif self.mode == "word":
-            partOne = self.splitter.chopAfterNWords(dataOne, self.N)
-            partTwo = self.splitter.chopAfterNWords(dataTwo, self.N)
+            part_one = self.splitter.chop_after_n_words(data_one, self.n)
+            part_two = self.splitter.chop_after_n_words(data_two, self.n)
         elif self.mode == "sentence":
-            partOne = self.splitter.chopAfterNSentence(dataOne, self.N)
-            partTwo = self.splitter.chopAfterNSentence(dataTwo, self.N)
-        return partOne, partTwo
+            part_one = self.splitter.chop_after_n_sentence(data_one, self.n)
+            part_two = self.splitter.chop_after_n_sentence(data_two, self.n)
+        return part_one, part_two
 
-    def loadAndCompare(self, pathOne, pathTwo):
+    def load_and_compare(self, path_one, path_two):
         self.cancel = False
-        x=0
+        x = 0
+
         try:
-            fileOne = StandardText(pathOne)
+            file_one = StandardText(path_one)
         except:
             eel.emergencyCancel()
-            eel.sendAlert("File: "+pathOne+"\n Could not be opened!")
+            eel.sendAlert("File: " + path_one + "\n Could not be opened!")
             return
         try:
-            fileTwo = StandardText(pathTwo)
+            file_two = StandardText(path_two)
         except:
             eel.emergencyCancel()
-            eel.sendAlert("File: "+pathTwo+"\n Could not be opened!")
+            eel.sendAlert("File: " + path_two + "\n Could not be opened!")
             return
 
+        data_one = file_one.get_text()
+        data_two = file_two.get_text()
 
-        dataOne = fileOne.getText()
-        dataTwo = fileTwo.getText()
+        part_one, part_two=self.split_files(data_one, data_two)
 
-        partOne, partTwo=self.splitFiles(dataOne, dataTwo)
-
-        for elementOne, elementTwo in zip(partOne, partTwo):
-            if self.cancel == True:
+        for elementOne, elementTwo in zip(part_one, part_two):
+            if self.cancel:
                 return
-            if (x % 1000 == 0):
-                eel.addRows(self.comparator.getJson())
-                self.comparator.resetJson()
+            if x % 1000 == 0:
+                eel.addRows(self.comparator.get_json())
+                self.comparator.reset_json()
                 eel.sleep(0.5)
             self.comparator.compare(elementOne, elementTwo)
             x += 1
 
-        eel.addRows(self.comparator.getJson())
+        eel.addRows(self.comparator.get_json())
         eel.sendAlert("Comparing complete!", "")
-        self.comparator.resetJson()
+        self.comparator.reset_json()
