@@ -1,6 +1,5 @@
 import eel
 from test import test
-import wx
 from model.txtFile import txtFile
 import tkinter as tk
 from tkinter import filedialog

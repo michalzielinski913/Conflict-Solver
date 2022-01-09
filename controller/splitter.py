@@ -1,5 +1,6 @@
 import re
 import time
+import os
 
 class Splitter:
     def chopAfterNChars(data, n):
@@ -23,13 +24,11 @@ class Splitter:
         data = [''.join(data[i:i+n]) for i in range(0,len(data),n)]
         return data
 
-file = open("text.txt", "r")
-data = file.read()
-temp = Splitter
-start = time.time()
-x = temp.chopAfterNChars(data, 10)
-# x = temp.chopAfterNWords(data, 10)
-# x = temp.chopAfterNSentence(data, 3)
-# x = temp.chopAfterNLines(data, 2)
-end = time.time()
-print(end - start)
+
+DATA = os.path.join(os.path.dirname(__file__), 'test_data')
+data_path = os.path.dirname(__file__)
+print(DATA)
+print(data_path)
+
+
+
