@@ -40,9 +40,9 @@ class TestSplitter(unittest.TestCase):
         output4 = ("\n".join(test_result4))
 
         self.assertEqual(result1, output1)
-        # self.assertEqual(result2, output2)
+        self.assertEqual(result2, output2)
         self.assertEqual(result3, output3)
-        # self.assertEqual(result4, output4)
+        self.assertEqual(result4, output4)
 
         file1.close()
         file2.close()
@@ -164,10 +164,10 @@ class TestSplitter(unittest.TestCase):
         data3 = file3.read()
         data4 = file4.read()
 
-        result1 = file1_res.read()
-        result2 = file2_res.read()
-        result3 = file3_res.read()
-        result4 = file4_res.read()
+        result1 = file1_res.read().encode().decode('unicode_escape')
+        result2 = file2_res.read().encode().decode('unicode_escape')
+        result3 = file3_res.read().encode().decode('unicode_escape')
+        result4 = file4_res.read().encode().decode('unicode_escape')
 
         test_result1 = splitter.chopAfterNLines(data1, 1)
         test_result2 = splitter.chopAfterNLines(data2, 3)
@@ -181,8 +181,8 @@ class TestSplitter(unittest.TestCase):
 
         self.assertEqual(result1, output1)
         self.assertEqual(result2, output2)
-        # self.assertEqual(result3, output3)
-        # self.assertEqual(result4, output4)
+        self.assertEqual(result3, output3)
+        self.assertEqual(result4, output4)
 
         file1.close()
         file2.close()

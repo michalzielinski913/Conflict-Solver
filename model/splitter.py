@@ -5,6 +5,7 @@ import os
 class Splitter:
     def chopAfterNChars(data, n):
         regex = ".{1," + str(n) + "}"
+        # data = data.replace('\n', '')
         data = re.findall(regex, data)
         return data
 
