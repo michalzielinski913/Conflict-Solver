@@ -100,5 +100,5 @@ class TestSplitter(unittest.TestCase):
         output_list = load_files_output(num)
         for i in range(0, 3):
             test_result = splitter.chop_after_n_lines(input_list[i], temp_arr[i])
-            output = ("\n".join(test_result))
+            output = ("".join(test_result))
             self.assertEqual(output_list[i], output)
