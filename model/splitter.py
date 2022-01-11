@@ -26,10 +26,5 @@ class Splitter:
         return data
 
 
-DATA = os.path.join(os.path.dirname(__file__), 'test_data')
-data_path = os.path.dirname(__file__)
-print(DATA)
-print(data_path)
-
 
 
