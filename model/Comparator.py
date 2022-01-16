@@ -34,3 +34,15 @@ class Comparator:
 
     def get_element(self, id_number):
         return self.dictionary[id_number]
+
+    def solve_conflict(self, id_number, option, new_text):
+        if option == "textOne":
+            return
+        elif option == "textTwo":
+            self.dictionary[id_number][0] = self.dictionary[id_number][1]
+        elif option == "custom":
+            self.dictionary[id_number][0] = new_text
+
+    def get_first_column(self):
+        for i in range(len(self.dictionary)):
+            yield self.dictionary[i+1][0]

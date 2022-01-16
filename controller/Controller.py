@@ -5,6 +5,8 @@ import tkinter as tk
 from tkinter import filedialog
 import eel
 
+from model.StandardTextWriter import StandardTextWriter
+
 
 class Controller:
 
@@ -14,6 +16,7 @@ class Controller:
         self.mode = ''
         self.n = ''
         self.cancel = False
+        self.writer = None
 
     def set_split_settings(self, mode, n):
         self.mode = mode
@@ -62,6 +65,7 @@ class Controller:
 
     def load_and_compare(self, path_one, path_two):
         self.cancel = False
+
         x = 0
 
         try:
@@ -80,18 +84,29 @@ class Controller:
         data_one = file_one.get_text()
         data_two = file_two.get_text()
 
-        part_one, part_two=self.split_files(data_one, data_two)
+        part_one, part_two = self.split_files(data_one, data_two)
 
-        for elementOne, elementTwo in zip(part_one, part_two):
+        for element_one, element_two in zip(part_one, part_two):
             if self.cancel:
                 return
             if x % 1000 == 0:
                 eel.addRows(self.comparator.get_json())
                 self.comparator.reset_json()
                 eel.sleep(0.5)
-            self.comparator.compare(elementOne, elementTwo)
+            self.comparator.compare(element_one, element_two)
             x += 1
 
         eel.addRows(self.comparator.get_json())
-        eel.sendAlert("Comparing complete!", "")
+        eel.sendAlert('Comparing complete!', '')
         self.comparator.reset_json()
+
+    def generate_third_file(self, path):
+        try:
+            self.writer = StandardTextWriter(path)
+        except:
+            eel.sendAlert('File: ' + path + '\n Could not be created!')
+            return
+        for line in self.comparator.get_first_column():
+            self.writer.write_line_to_file(line)
+        eel.cancelCompare()
+        eel.sendAlert('File: ' + path + '\n was generated!')

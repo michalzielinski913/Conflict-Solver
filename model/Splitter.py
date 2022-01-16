@@ -1,5 +1,6 @@
 import re
 import time
+import os
 
 
 class Splitter:
@@ -24,3 +25,9 @@ class Splitter:
         data = data.splitlines(True)
         data = [' '.join(data[i:i+n]) for i in range(0, len(data), n)]
         return data
+
+
+data = os.path.join(os.path.dirname(__file__), 'test_data')
+data_path = os.path.dirname(__file__)
+print(data)
+print(data_path)
