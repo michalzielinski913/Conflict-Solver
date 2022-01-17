@@ -9,3 +9,6 @@ class StandardTextWriter(FileWriterInterface):
     def writeLineToFile(self, line):
         self.file.write(line)
         self.file.flush()
+
+    def finish(self):
+        self.file.close()

@@ -11,8 +11,7 @@ from model.StandardTextWriter import StandardTextWriter
 class Controler:
 
     def __init__(self):
-        self.splitter = Splitter()
-        self.comparator=Comparator()
+        pass
 
     def setSplitSettings(self, mode, N):
         self.mode = mode
@@ -59,6 +58,8 @@ class Controler:
 
     def loadAndCompare(self, pathOne, pathTwo):
         self.cancel = False
+        self.splitter = Splitter()
+        self.comparator=Comparator()
         x=0
         try:
             fileOne = StandardText(pathOne)
@@ -101,5 +102,6 @@ class Controler:
             return
         for line in self.comparator.getFirstColumn():
             self.writer.writeLineToFile(line)
+        self.writer.finish()
         eel.cancelCompare()
         eel.sendAlert("File: "+path+"\n was generated!")
