@@ -1,8 +1,6 @@
-
 class FileWriterInterface:
     def __init__(self, path):
         pass
 
-    def writeLineToFile(self, line):
+    def write_line_to_file(self, line):
         pass
-

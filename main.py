@@ -11,35 +11,41 @@ eel.init('web')
 
 controller=Controler()
 
-@eel.expose
-def getFilePath(wildcard="*"):
-    return controller.chooseFilePath()
 
 @eel.expose
-def loadAndCompare(pathOne, pathTwo):
-    controller.loadAndCompare(pathOne, pathTwo)
+def get_file_path(wildcard='*'):
+    return controller.choose_file_path()
+
+
+@eel.expose
+def load_and_compare(path_one, path_two):
+    controller.load_and_compare(path_one, path_two)
 
 #C:/Users/Michał/Downloads/długieLoremIpsum2.txt
 
+
 @eel.expose
-def getFragment(id):
-    controller.getFragment(id)
+def get_fragment(id_number):
+    controller.get_fragment(id_number)
 
 
 @eel.expose
-def solveConflict(id, option, newText=None):
-    controller.solveConflict(id, option, newText)
+def solve_conflict(id_number, option, new_text=None):
+    controller.solve_conflict(id_number, option, new_text)
+
 
 @eel.expose
-def setSplitSettings(mode, N):
-    controller.setSplitSettings(mode, N)
+def set_split_settings(mode, N):
+    controller.set_split_settings(mode, N)
+
 
 @eel.expose
-def cancelCompare():
-    controller.cancelCompare()
+def cancel_compare():
+    controller.cancel_compare()
 
 @eel.expose
-def generateThirdFile(path):
-    controller.generateThirdFile(path)
+def generate_third_file(path):
+    controller.generate_third_file(path)
+
 
 eel.start('main.html')
