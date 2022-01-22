@@ -1,5 +1,5 @@
 import eel
-from controller.Controller import Controler
+from controller.Controller import Controller
 ###TODO###
 #Input validation
 #Notifications about errors/finish in UI Edit: added simple version
@@ -9,7 +9,7 @@ from controller.Controller import Controler
 
 eel.init('web')
 
-controller=Controler()
+controller=Controller()
 
 
 @eel.expose

@@ -8,8 +8,6 @@ import eel
 from model.StandardTextWriter import StandardTextWriter
 
 
-class Controler:
-
 class Controller:
 
     def __init__(self):
@@ -32,7 +30,7 @@ class Controller:
         eel.removeRow(id_number)
         eel.setLeftText("")
         eel.setRightText("")
-        self.comparator.solveConflict(int(id), option, newText)
+        self.comparator.solve_conflict(int(id_number), option, new_text)
 
     def get_fragment(self, id_number):
         text_one, text_two = self.comparator.get_element(int(id_number))
@@ -69,13 +67,13 @@ class Controller:
             file_one = StandardText(path_one)
         except:
             eel.cancelCompare()
-            eel.sendAlert("File: "+pathOne+"\n Could not be opened!")
+            eel.sendAlert("File: "+path_one+"\n Could not be opened!")
             return
         try:
             file_two = StandardText(path_two)
         except:
             eel.cancelCompare()
-            eel.sendAlert("File: "+pathTwo+"\n Could not be opened!")
+            eel.sendAlert("File: "+path_two+"\n Could not be opened!")
             return
 
         data_one = file_one.get_text()

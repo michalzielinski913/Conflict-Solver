@@ -50,7 +50,7 @@ class View{
     }
 
     cancelCompare(){
-        eel.cancelCompare();
+        eel.cancel_compare();
         this.clearTable();
         document.getElementById("selection").hidden=true;
         document.getElementById("options").hidden=false;
@@ -59,7 +59,7 @@ class View{
 
     solveCompare(){
         try{
-            eel.solveConflict(this.getChoosenElement(), $('input[name="conflictOption"]:checked').val(), $('textarea[name="thirdOptionValue"]').val());
+            eel.solve_conflict(this.getChoosenElement(), $('input[name="conflictOption"]:checked').val(), $('textarea[name="thirdOptionValue"]').val());
 
         }catch (e) {
             return;
@@ -73,14 +73,14 @@ class View{
 
     loadAndCompare(){
         try{
-            eel.setSplitSettings($('input[name="mode"]:checked').val(), parseInt(document.getElementById("N").value))
+            eel.set_split_settings($('input[name="mode"]:checked').val(), parseInt(document.getElementById("N").value))
          if (document.getElementById('fileOnePath').value == '' || document.getElementById('fileTwoPath').value == '') {
              return;
          }
          this.clearTable();
          document.getElementById('textOneContent').contentEditable = true;
          document.getElementById('textOneContent').innerHTML = "";
-         eel.loadAndCompare(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
+         eel.load_and_compare(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
          document.getElementById("options").hidden = true;
          document.getElementById("selection").hidden = false;
          document.getElementById("thirdFile").hidden=true;
@@ -98,7 +98,7 @@ class View{
         alert(msg);
     }
     generateThirdFile(){
-        eel.generateThirdFile(document.getElementById("thirdFilePath").value);
+        eel.generate_third_file(document.getElementById("thirdFilePath").value);
     }
 
 }
@@ -138,12 +138,12 @@ function cancelCompare(){
     viewObject.cancelCompare();
 }
 function setLeftFile() {
-         eel.getFilePath()(function(path){
+         eel.get_file_path()(function(path){
         viewObject.setLeftFile(path);
 
     }) }
 function setRightFile() {
-         eel.getFilePath()(function(path){
+         eel.get_file_path()(function(path){
         viewObject.setRightFile(path);
 
     })
