@@ -7,41 +7,81 @@ import eel
 
 from model.StandardTextWriter import StandardTextWriter
 
-
+"""
+Most important class of the project, It controls flow of the program
+"""
 class Controller:
 
     def __init__(self):
+        """
+        Class constructor
+        """
         pass
 
     def set_split_settings(self, mode, n):
+        """
+        Set settings for text splitting
+        :param mode: splitting mode
+        :param n: splitting size
+        """
         self.mode = mode
         self.n = n
 
     def get_split_settings(self):
+        """
+        Getter for splitting settings
+        :return:
+        """
         return self.mode, self.n
 
     def choose_file_path(self, wildcard="*"):
+        """
+        Open file dialog and choose text file
+        :param wildcard: wildcard
+        :return: String with path to the choosen text file
+        """
         root = tk.Tk()
         root.withdraw()
         file_path = filedialog.askopenfilename()
         return file_path
 
     def solve_conflict(self, id_number, option, new_text=None):
+        """
+        Solve selected conflict
+        :param id_number: Conflict ID
+        :param option: How to solve conflict
+        :param new_text: If custom text option was choosen this parameter contains its value
+        :return:
+        """
         eel.removeRow(id_number)
         eel.setLeftText("")
         eel.setRightText("")
         self.comparator.solve_conflict(int(id_number), option, new_text)
 
     def get_fragment(self, id_number):
+        """
+        Display two full text chunks in the UI based on ID
+        :param id_number: conflict ID of given element
+        :return:
+        """
         text_one, text_two = self.comparator.get_element(int(id_number))
         eel.setLeftText(text_one)
         eel.setRightText(text_two)
 
     def cancel_compare(self):
+        """
+        Cancel text comparision
+        :return:
+        """
         self.cancel = True
-        pass
 
     def split_files(self, data_one, data_two):
+        """
+        Split text files according to settings defined earlier
+        :param data_one: Text one which will be splitted
+        :param data_two: Text two which will be splitted
+        :return: Two arrays, each contain splitted text
+        """
         part_one = []
         part_two = []
         if self.mode == "line":
@@ -59,6 +99,11 @@ class Controller:
         return part_one, part_two
 
     def load_and_compare(self, path_one, path_two):
+        """
+        Load given text files and compare them
+        :param path_one: Path to the first file
+        :param path_two: Path to the second file
+        """
         self.cancel = False
         self.splitter = Splitter()
         self.comparator=Comparator()
@@ -96,6 +141,10 @@ class Controller:
         self.comparator.reset_json()
 
     def generate_third_file(self, path):
+        """
+        Generate third file
+        :param path: Path where third file will be stored
+        """
         try:
             self.writer = StandardTextWriter(path)
         except:

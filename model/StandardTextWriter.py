@@ -1,6 +1,8 @@
 from model.FileWriterInterface import FileWriterInterface
 
-
+"""
+Implementation of FileWriterInterface supporting basic text files (txt, csv etc.)
+"""
 class StandardTextWriter(FileWriterInterface):
 
     def __init__(self, path):
