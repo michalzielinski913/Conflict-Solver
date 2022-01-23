@@ -22,6 +22,6 @@ class TestMergeUnitTest(unittest.TestCase):
         def test_merge(self):
             with open(data_path + "/input/" + self.input, 'r') as input_file:
                 input_text = input_file.read().splitlines()
-            merged_text = merge_text(input_text) # CHANGE METHOD NAME TO CORRECT ONE
+            merged_text = merge_text(input_text) # CHANGE METHOD NAME TO CORRECT ONE / METHOD SHOULD RETURN STRING WITH TEXT TO WRITE TO FILE
             output = open(data_path + "/output/" + self.expected, 'r')
             self.assertEqual(merged_text, output.read())
