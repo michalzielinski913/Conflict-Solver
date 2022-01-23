@@ -1,5 +1,5 @@
 from parameterized import parameterized_class
-from model.StandardTextWriter import StandardTextWriter
+# HERE IMPORT METHOD TO MERGE 3RD FILE
 
 import os
 import filecmp
@@ -7,7 +7,7 @@ import unittest
 
 data_path = (os.path.join(os.path.dirname(__file__), "mergeTestFiles"))
 
-class TestMathUnitTest(unittest.TestCase):
+class TestMergeUnitTest(unittest.TestCase):
 
     @parameterized_class(('input', 'expected'), [
         ("FileInput1.txt", "FileOutput1.txt"),
@@ -19,10 +19,10 @@ class TestMathUnitTest(unittest.TestCase):
         ("FileInput7.txt", "FileOutput7.txt"),
         ("FileInput8.txt", "FileOutput8.txt")
     ])
-    class TestMathClass(unittest.TestCase):
-        def test_merge(self, input, expected):
-            with open(data_path + "/input/" + input, 'r') as input_file:
-                input_text = input_file.readlines()
-            merged_text = merge_text(input_text)
-            output = open(data_path + "/output/" + expected, 'r')
-            self.assertTrue(merged_text==
+    class TestMergeClass(unittest.TestCase):
+        def test_merge(self):
+            with open(data_path + "/input/" + self.input, 'r') as input_file:
+                input_text = input_file.read().splitlines()
+            merged_text = merge_text(input_text) # CHANGE METHOD NAME TO CORRECT ONE
+            output = open(data_path + "/output/" + self.expected, 'r')
+            self.assertEqual(merged_text, output.read())
