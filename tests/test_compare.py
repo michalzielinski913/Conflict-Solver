@@ -1,8 +1,7 @@
 from parameterized import parameterized_class
-# from model.StandardTextWriter import StandardTextWriter
+# HERE IMPORT METHOD TO COMPARE 
 
 import os
-import filecmp
 import unittest
 
 data_path = (os.path.join(os.path.dirname(__file__), "compareTestFiles"))
@@ -25,5 +24,5 @@ class TestCompareUnitTest(unittest.TestCase):
                 first_text = first_file.readlines()
             with open(data_path + "/secondFile/" + self.second_file, 'r') as second_file:
                 second_text = second_file.readlines()
-            difference_list = compare(first_text, second_text)
+            difference_list = compare(first_text, second_text)  # CHANGE METHOD NAME TO CORRECT ONE / METHOD SHOULD RETURN LIST WITH INDEXES WHERE DIFFERENCE OCCURES
             self.assertEqual(difference_list, self.expected)
