@@ -71,7 +71,7 @@
         else {
             table.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
-            eel.getFragment(viewObject.getChoosenElement());
+            eel.get_fragment(viewObject.getChoosenElement());
         }
     } );
 
@@ -122,8 +122,12 @@
             <br>
             <br>
             <button type="button" onclick="viewObject.cancelCompare()">Cancel</button>
-
-
+        </div>
+        <div id="thirdFile" hidden="hidden">
+            <label>Generate merged text file:</label><br>
+            <input id='thirdFilePath' placeholder='New File path' value='' size="32" required/><button type="button" onclick="setThirdFilePath()">Select Location</button><br>
+            <button type="button" onclick="viewObject.generateThirdFile()">Save</button><br>
+            <button type="button" onclick="viewObject.cancelCompare()">Cancel</button>
         </div>
     </div>
 </div>

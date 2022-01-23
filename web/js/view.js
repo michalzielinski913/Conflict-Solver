@@ -50,33 +50,40 @@ class View{
     }
 
     cancelCompare(){
-        eel.cancelCompare();
+        eel.cancel_compare();
         this.clearTable();
         document.getElementById("selection").hidden=true;
         document.getElementById("options").hidden=false;
+        document.getElementById("thirdFile").hidden=true;
     }
 
     solveCompare(){
         try{
-            eel.solveConflict(this.getChoosenElement(), $('input[name="conflictOption"]:checked').val(), $('textarea[name="thirdOptionValue"]').val());
+            eel.solve_conflict(this.getChoosenElement(), $('input[name="conflictOption"]:checked').val(), $('textarea[name="thirdOptionValue"]').val());
 
         }catch (e) {
             return;
+        }
+        if(this.list.getRowsAmount()==1){
+            document.getElementById("selection").hidden=true;
+            document.getElementById("options").hidden=true;
+            document.getElementById("thirdFile").hidden=false;
         }
     }
 
     loadAndCompare(){
         try{
-            eel.setSplitSettings($('input[name="mode"]:checked').val(), parseInt(document.getElementById("N").value))
+            eel.set_split_settings($('input[name="mode"]:checked').val(), parseInt(document.getElementById("N").value))
          if (document.getElementById('fileOnePath').value == '' || document.getElementById('fileTwoPath').value == '') {
              return;
          }
          this.clearTable();
          document.getElementById('textOneContent').contentEditable = true;
          document.getElementById('textOneContent').innerHTML = "";
-         eel.loadAndCompare(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
+         eel.load_and_compare(document.getElementById('fileOnePath').value, document.getElementById('fileTwoPath').value);
          document.getElementById("options").hidden = true;
          document.getElementById("selection").hidden = false;
+         document.getElementById("thirdFile").hidden=true;
         }catch (e) {
             return;
         }
@@ -89,6 +96,13 @@ class View{
 
     sendAlert(msg){
         alert(msg);
+    }
+    generateThirdFile(){
+        eel.generate_third_file(document.getElementById("thirdFilePath").value);
+    }
+
+    thirdFilePath(path){
+        this.utility.setThirdFilePath(path)
     }
 
 }
@@ -123,20 +137,24 @@ function sendAlert(msg){
     viewObject.sendAlert(msg);
 }
 
-eel.expose(emergencyCancel)
-function emergencyCancel(){
+eel.expose(cancelCompare)
+function cancelCompare(){
     viewObject.cancelCompare();
 }
+
+function setThirdFilePath() {
+         eel.third_file_path()(function(path){
+        viewObject.thirdFilePath(path);
+
+    }) }
 function setLeftFile() {
-         eel.getFilePath()(function(path){
+         eel.get_file_path()(function(path){
         viewObject.setLeftFile(path);
 
     }) }
 function setRightFile() {
-         eel.getFilePath()(function(path){
-    // Update the div with a random number returned by python
-    viewObject.setRightFile(path);
+         eel.get_file_path()(function(path){
+        viewObject.setRightFile(path);
 
     })
-
 }

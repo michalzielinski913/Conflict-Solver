@@ -21,6 +21,10 @@ class UtilityDisplay{
         return document.getElementById(this.fileTwoPathID).value;
     }
 
+    setThirdFilePath(path){
+        document.getElementById("thirdFilePath").value=path;
+    }
+
     toggleMode(){
         if(this.mode=="fileSelection"){
             this.mode="conflictOptions";
