@@ -2,7 +2,6 @@ from parameterized import parameterized_class
 # HERE IMPORT METHOD TO MERGE 3RD FILE
 
 import os
-import filecmp
 import unittest
 
 data_path = (os.path.join(os.path.dirname(__file__), "mergeTestFiles"))
