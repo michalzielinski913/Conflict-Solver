@@ -75,5 +75,11 @@ def generate_third_file(path):
     """
     controller.generate_third_file(path)
 
+@eel.expose
+def third_file_path():
+    """
+    Set location of third (merged) file
+    """
+    return controller.third_file_path()
 
 eel.start('main.html')

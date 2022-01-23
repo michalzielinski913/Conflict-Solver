@@ -34,6 +34,16 @@ class Controller:
         """
         return self.mode, self.n
 
+    def third_file_path(self):
+        """
+        Open file dialog to choose location of third file
+        """
+        root = tk.Tk()
+        root.withdraw()
+        root.attributes("-topmost", True)
+        file_path = filedialog.asksaveasfile(parent=root)
+        return file_path.name
+
     def choose_file_path(self, wildcard="*"):
         """
         Open file dialog and choose text file
@@ -42,7 +52,8 @@ class Controller:
         """
         root = tk.Tk()
         root.withdraw()
-        file_path = filedialog.askopenfilename()
+        root.attributes("-topmost", True)
+        file_path = filedialog.askopenfilename(parent=root)
         return file_path
 
     def solve_conflict(self, id_number, option, new_text=None):

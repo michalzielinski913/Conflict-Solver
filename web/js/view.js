@@ -101,6 +101,10 @@ class View{
         eel.generate_third_file(document.getElementById("thirdFilePath").value);
     }
 
+    thirdFilePath(path){
+        this.utility.setThirdFilePath(path)
+    }
+
 }
 var viewObject=new View();
 eel.expose(setLeftText);
@@ -137,6 +141,12 @@ eel.expose(cancelCompare)
 function cancelCompare(){
     viewObject.cancelCompare();
 }
+
+function setThirdFilePath() {
+         eel.third_file_path()(function(path){
+        viewObject.thirdFilePath(path);
+
+    }) }
 function setLeftFile() {
          eel.get_file_path()(function(path){
         viewObject.setLeftFile(path);
