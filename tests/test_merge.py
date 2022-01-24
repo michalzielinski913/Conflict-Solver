@@ -1,5 +1,5 @@
 from parameterized import parameterized_class
-# HERE IMPORT METHOD TO MERGE 3RD FILE
+from model.StandardTextWriter import StandardTextWriter
 
 import os
 import unittest
@@ -22,6 +22,9 @@ class TestMergeUnitTest(unittest.TestCase):
         def test_merge(self):
             with open(data_path + "/input/" + self.input, 'r') as input_file:
                 input_text = input_file.read().splitlines()
-            merged_text = merge_text(input_text) # CHANGE METHOD NAME TO CORRECT ONE / METHOD SHOULD RETURN STRING WITH TEXT TO WRITE TO FILE
-            output = open(data_path + "/output/" + self.expected, 'r')
-            self.assertEqual(merged_text, output.read())
+            text_writer = StandardTextWriter(data_path + "/result.txt")
+            for text in input_text:
+                text_writer.writeLineToFile(text)
+            expected = open(data_path + "/output/" + self.expected, 'r').read().encode().decode('unicode_escape')
+            result = open(data_path + "/result.txt", "r").read().encode().decode('unicode_escape')
+            self.assertEqual(expected, result)
