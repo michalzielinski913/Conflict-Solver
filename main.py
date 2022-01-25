@@ -2,6 +2,7 @@ import eel
 from controller.Controller import Controller
 """
 Main project file, It must be executed in order to run program
+It contains set of 'friend' functions which can be utilized by javascript layer of application
 """
 
 eel.init('web')

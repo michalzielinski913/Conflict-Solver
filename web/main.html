@@ -43,6 +43,10 @@
         <tbody>
     </table>
             <script>
+                /*
+                    This function initialize table
+                    It contains lambda function which cut extra characters which are not needed for preview
+                 */
             $(document).ready(function() {
     var table = $('#differenceTab').DataTable( {
     columnDefs: [ {
@@ -63,7 +67,10 @@
         ordering: false
 
 } );
-
+    /*
+        This function is called when user click table element,
+        It highlights choosen element and notify python backend
+     */
     $('#differenceTab tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
