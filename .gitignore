@@ -19,3 +19,4 @@ Scripts/Lib/site-packages/zope.event-4.5.0.dist-info/
 
 Scripts/
 tests/_trial_temp/
+tests/mergeTestFiles/result.txt
