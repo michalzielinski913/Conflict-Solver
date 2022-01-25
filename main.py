@@ -28,9 +28,6 @@ def load_and_compare(path_one, path_two):
     """
     controller.load_and_compare(path_one, path_two)
 
-#C:/Users/Michał/Downloads/długieLoremIpsum2.txt
-
-
 @eel.expose
 def get_fragment(id_number):
     """

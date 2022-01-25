@@ -1,3 +1,4 @@
+import itertools
 import re
 
 from parameterized import parameterized_class
@@ -27,19 +28,9 @@ class TestCompareClass(unittest.TestCase):
             second_text = second_file.readlines()
         with open(data_path + "/json/" + self.expected_json, 'r') as json_file:
             expected = json_file.read()
-        maks = max(len(first_text),len(second_text))
-        if len(first_text) < len(second_text):
-            for i in range(0, maks):
-                if i < len(first_text):
-                    comp.compare(first_text[i], second_text[i])
-                else:
-                    comp.compare("",second_text[i])
-        else:
-            for i in range(0, maks):
-                if i < len(second_text):
-                    comp.compare(first_text[i], second_text[i])
-                else:
-                    comp.compare(first_text[i], "")
+
+        for text in itertools.zip_longest(first_text, second_text, fillvalue=""):
+                comp.compare(text[0], text[1])
         json = comp.get_json()
         comp.reset_json()
         json_file.close()

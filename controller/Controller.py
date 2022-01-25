@@ -1,3 +1,5 @@
+import itertools
+
 from model.Comparator import Comparator
 from model.StandardText import StandardText
 from model.Splitter import Splitter
@@ -137,7 +139,7 @@ class Controller:
 
         part_one, part_two = self.split_files(data_one, data_two)
 
-        for element_one, element_two in zip(part_one, part_two):
+        for element_one, element_two in itertools.zip_longest(part_one, part_two, fillvalue=""):
             if self.cancel:
                 return
             if x % 1000 == 0:
