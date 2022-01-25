@@ -11,7 +11,7 @@ def load_files(path, file_name):
         text = f.read().encode().decode('unicode_escape')
     return text
 
-
+"""Test class responsible for testing chop function of program"""
 class TestSplitter(unittest.TestCase):
     @parameterized.expand([("FiftyCharsMultiLineInput.txt", "FiftyCharsMultiLineOutput.txt", 12),
                            ("FiftyCharsSingleLineInput.txt", "FiftyCharsSingleLineOutput.txt", 12),
