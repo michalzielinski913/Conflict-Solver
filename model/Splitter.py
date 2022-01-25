@@ -13,8 +13,8 @@ class Splitter:
         :param n: chunk size
         :return: Array where each elements contains n characters
         """
-        regex = '.{1,' + str(n) + '}'
-        print(regex)
+        regex = ".{1," + str(n) + "}"
+        data = data.replace('\n', '')
         data = re.findall(regex, data)
         return data
 
@@ -36,7 +36,7 @@ class Splitter:
         :param n: chunk size
         :return: Array where each elements contains n sentences
         """
-        regex = '(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s'
+        regex = "(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|\!)\s"
         data = re.split(regex, data)
         data = [' '.join(data[i: i + n]) for i in range(0, len(data), n)]
         return data
@@ -49,5 +49,5 @@ class Splitter:
         :return: Array where each elements contains n lines
         """
         data = data.splitlines(True)
-        data = [' '.join(data[i:i+n]) for i in range(0, len(data), n)]
+        data = [''.join(data[i:i+n]) for i in range(0,len(data),n)]
         return data

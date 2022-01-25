@@ -1,5 +1,5 @@
 from parameterized import parameterized
-from model.splitter import Splitter
+from model.Splitter import Splitter
 import os
 import unittest
 
@@ -20,7 +20,7 @@ class TestSplitter(unittest.TestCase):
                            ("LongArabicCharsInput.txt", "LongArabicCharsOutput.txt", 1)
                            ])
     def test_chop_after_n_chars(self, input, expected, split_value):
-        splitter = Splitter
+        splitter = Splitter()
         temp_path = (os.path.join(data_path, "CharsSplitFiles"))
         input_text = load_files(temp_path, input)
         output_text = load_files(temp_path, expected)
@@ -35,7 +35,7 @@ class TestSplitter(unittest.TestCase):
                            ("TenWordsSingleLineInput.txt", "TenWordsSingleLineOutput.txt", 3)
                            ])
     def test_chop_after_n_words(self, input, expected, split_value):
-        splitter = Splitter
+        splitter = Splitter()
         temp_path = (os.path.join(data_path, "WordsSplitFiles"))
         input_text = load_files(temp_path, input)
         output_text = load_files(temp_path, expected)
@@ -50,7 +50,7 @@ class TestSplitter(unittest.TestCase):
                            ("TenSentencesSingleLineInput.txt", "TenSentencesSingleLineOutput.txt", 3)
                            ])
     def test_chop_after_n_sentence(self, input, expected, split_value):
-        splitter = Splitter
+        splitter = Splitter()
         temp_path = (os.path.join(data_path, "SentencesSplitFiles"))
         input_text = load_files(temp_path, input)
         output_text = load_files(temp_path, expected)
@@ -65,7 +65,7 @@ class TestSplitter(unittest.TestCase):
                            ("TenLinesThreeInput.txt", "TenLinesThreeOutput.txt", 3)
                            ])
     def test_chop_after_n_lines(self, input, expected, split_value):
-        splitter = Splitter
+        splitter = Splitter()
         temp_path = (os.path.join(data_path, "LinesSplitFiles"))
         input_text = load_files(temp_path, input)
         output_text = load_files(temp_path, expected)
