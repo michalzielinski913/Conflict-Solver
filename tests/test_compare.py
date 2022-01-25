@@ -40,6 +40,9 @@ class TestCompareClass(unittest.TestCase):
                     comp.compare(first_text[i], second_text[i])
                 else:
                     comp.compare(first_text[i], "")
-        json = comp.getJson()
-        comp.resetJson()
+        json = comp.get_json()
+        comp.reset_json()
+        json_file.close()
+        first_file.close()
+        second_file.close()
         self.assertEqual(expected, json)

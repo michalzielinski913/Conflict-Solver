@@ -13,5 +13,5 @@ class StandardTextWriter(FileWriterInterface):
         self.file.write(line)
         self.file.flush()
 
-    def finish(self):
+    def close(self):
         self.file.close()

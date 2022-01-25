@@ -163,6 +163,6 @@ class Controller:
             return
         for line in self.comparator.get_first_column():
             self.writer.write_line_to_file(line)
-        self.writer.finish()
+        self.writer.close()
         eel.cancelCompare()
         eel.sendAlert('File: ' + path + '\n was generated!')
