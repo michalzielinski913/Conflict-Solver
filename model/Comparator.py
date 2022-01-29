@@ -7,7 +7,7 @@ class Comparator:
         Class constructor, It initializes some fields of class
         """
         self.dictionary = {}
-        self.x = 1
+        self.index = 1
         self.json = ''
 
     def compare(self, element_one, element_two):
@@ -17,10 +17,10 @@ class Comparator:
         :param element_two: Element two
         """
         row = [element_one, element_two]
-        self.dictionary[self.x] = row
+        self.dictionary[self.index] = row
         if element_one != element_two:
             self.add_element(element_one, element_two)
-        self.x += 1
+        self.index += 1
 
     def add_element(self, element_one, element_two):
         """
@@ -31,7 +31,7 @@ class Comparator:
         line1 = element_one.replace('\'', '\"')
         line2 = element_two.replace('\'', '\"')
         json_element = {
-            'DT_RowId': self.x,
+            'DT_RowId': self.index,
             'FirstFile': line1[:33],
             'SecondFile': line2[:33]
         }

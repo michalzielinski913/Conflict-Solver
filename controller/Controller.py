@@ -122,23 +122,22 @@ class Controller:
         self.comparator=Comparator()
         x=0
         try:
-            file_one = StandardText(path_one)
+            self.file_one = StandardText(path_one)
         except:
             eel.cancelCompare()
             eel.sendAlert("File: "+path_one+"\n Could not be opened!")
             return
         try:
-            file_two = StandardText(path_two)
+            self.file_two = StandardText(path_two)
         except:
             eel.cancelCompare()
             eel.sendAlert("File: "+path_two+"\n Could not be opened!")
             return
 
-        data_one = file_one.get_text()
-        data_two = file_two.get_text()
+        data_one = self.file_one.get_text()
+        data_two = self.file_two.get_text()
 
         part_one, part_two = self.split_files(data_one, data_two)
-
         for element_one, element_two in itertools.zip_longest(part_one, part_two, fillvalue=""):
             if self.cancel:
                 return

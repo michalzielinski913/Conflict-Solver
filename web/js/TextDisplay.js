@@ -8,7 +8,6 @@ class TextDisplay{
      */
     constructor(id) {
         this.id=id;
-        this.object=document.getElementById(id);
     }
 
     /**
